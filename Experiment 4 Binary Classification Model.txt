@@ -1,0 +1,26 @@
+ Experiment 4: Binary Classification Model
+importpandasaspd
+importmatplotlib.pyplotasplt
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.ensembleimportRandomForestClassifier
+fromsklearn.metricsimportaccuracy_score,confusion_matrix
+df=pd.read_csv(r"E:\breastcancer.csv")
+print(df[["id","diagnosis","radius_mean","texture_mean"]].head())
+df["diagnosis"]=df["diagnosis"].map({"M":1,"B":0})
+X=df.drop(["diagnosis","id","Unnamed:32"],axis=1)
+y=df["diagnosis"]
+X_train,X_test,y_train,y_test=train_test_split(
+X,y,test_size=0.2,random_state=42)
+model=RandomForestClassifier(n_estimators=100,random_state=42)
+model.fit(X_train,y_train)
+y_pred=model.predict(X_test)
+print("Accuracy:",accuracy_score(y_test,y_pred))
+cm=confusion_matrix(y_test,y_pred)
+print("ConfusionMatrix:")
+print(cm)
+img=plt.imshow(cm)
+plt.title("RandomForest-BreastCancer")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.colorbar(img)
+plt.show()

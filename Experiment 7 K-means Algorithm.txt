@@ -1,0 +1,20 @@
+ Experiment 7: K-means Algorithm
+#k-meansClustering
+Import pandas as pd
+Import matplotlib.pyplot as plt
+From sklearn.cluster import KMeans
+dataset=
+pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-
+data/master/iris.csv")
+x=dataset.drop('species',axis=1).values
+kmeans=KMeans(n_clusters=3,random_state=42)
+kmeans.fit(x)
+cl=kmeans.labels_
+ce=kmeans.cluster_centers_
+plt.figure(figsize=(10,6))
+plt.scatter(x[:,0],x[:,1],c=cl,cmap='viridis',s=50)
+plt.scatter(ce[:,0],ce[:,1],c='red',marker='X',s=250)
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("K-Means Clustering")
+plt.show()

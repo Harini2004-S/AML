@@ -1,0 +1,26 @@
+ Experiment 6: Decision Tree for Classification using sklearn
+Import matplotlib.pyplot as plt
+Import pandas as pd
+From sklearn.model_selection import train_test_split
+From sklearn.tree import DecisionTreeClassifier,plot_tree
+From sklearn.metrics import accuracy_score,classification_report
+dataset=pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-
+data/refs/heads/master/iris.csv')
+x=dataset.drop('species',axis=1)
+y=dataset['species']
+x_train,x_test,y_train,y_test=
+train_test_split(x,y,test_size=0.2,random_state=42)
+dt=DecisionTreeClassifier(criterion='entropy',splitter='random',
+max_depth=3)
+dt.fit(x_train,y_train)
+y_pred=dt.predict(x_test)
+acc=accuracy_score(y_test,y_pred)
+acc
+class_names_list=y.unique().astype(str).tolist()
+feature_names_list=x.columns.tolist()
+plt.figure(figsize=(10,12))
+plot_tree(dt,filled=True,
+feature_names=feature_names_list,class_names=class_names_list,
+rounded=True)
+plt.title("Decision Tree Visualization")
+plt.show()

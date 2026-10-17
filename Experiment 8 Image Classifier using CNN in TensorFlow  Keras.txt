@@ -1,0 +1,45 @@
+ Experiment 8: Image Classifier using CNN in TensorFlow / Keras
+#CNN
+Import tensorflow as tf
+From tensorflow.keras import layers,models
+From tensorflow.keras.datasets import mnist
+From tensorflow.keras.utils importto_categorical
+(x_train,y_train),(x_test,y_test)=mnist.load_data()
+x_train=x_train.reshape((60000,28,28,1))/255.0
+x_test=x_test.reshape((10000,28,28,1))/255.0
+y_train=to_categorical(y_train)
+y_test=to_categorical(y_test)
+model=models.Sequential()
+model.add(layers.Conv2D(32,(3,3),activation='relu',input_shape=(28,28,
+1)))
+model.add(layers.MaxPooling2D((2,2)))
+model.add(layers.Conv2D(64,(3,3),activation='relu'))
+model.add(layers.MaxPooling2D((2,2)))
+model.add(layers.Conv2D(64,(3,3),activation='relu'))
+model.add(layers.Flatten())
+model.add(layers.Dense(64,activation='relu'))
+model.add(layers.Dense(10,activation='softmax'))
+model.compile(optimizer='adam',loss='categorical_crossentropy',
+metrics=['accuracy'])
+model.fit(x_train,y_train,epochs=5,batch_size=64,validation_split=0.1)
+test_loss,test_acc=model.evaluate(x_test,y_test)
+print("Test accuracy:",test_acc)
+
+
+Import matplotlib.pyplot as plt
+history=model.fit(x_train,y_train,epochs=5,batch_size=64,
+validation_split=0.1)
+test_loss,test_acc=model.evaluate(x_test,y_test)
+print("Test accuracy:",test_acc)
+plt.plot(history.history['accuracy'],label='Training Accuracy')
+plt.plot(history.history['val_accuracy'],label='Validation Accuracy')
+plt.xlabel('Epoch')
+
+
+#Plottrainingandvalidationloss
+plt.plot(history.history['loss'],label='Training Loss')
+plt.plot(history.history['val_loss'],label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()

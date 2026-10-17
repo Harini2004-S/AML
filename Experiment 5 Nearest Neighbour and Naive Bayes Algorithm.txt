@@ -1,0 +1,36 @@
+ Experiment 5: Nearest Neighbour and Naive Bayes Algorithm
+#KNN
+importpandasaspd
+importmatplotlib.pyplotasplt
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.neighborsimportKNeighborsClassifier
+fromsklearn.naive_bayesimportGaussianNB
+fromsklearn.metricsimportaccuracy_score
+fromsklearn.preprocessingimportLabelEncoder
+data=pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-
+data/master/iris.csv")
+X=data.drop('species',axis=1)
+y=data['species']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,
+random_state=32)
+knn=KNeighborsClassifier()
+knn.fit(X_train,y_train)
+knn_pred=knn.predict(X_test)
+print("KNN Accuracy:",accuracy_score(y_test,knn_pred))
+nb=GaussianNB()
+nb.fit(X_train,y_train)
+nb_pred=nb.predict(X_test)
+print("Gaussian NB Accuracy:",accuracy_score(y_test,nb_pred))
+le=LabelEncoder()
+actual=le.fit_transform(y_test)
+predicted=le.transform(nb_pred)
+plt.figure(figsize=(6,6))
+plt.scatter(actual,predicted,color='blue',s=60)
+plt.plot([0,2],[0,2],'r--',linewidth=2)
+plt.xticks([0,1,2],le.classes_)
+plt.yticks([0,1,2],le.classes_)
+plt.xlabel("ActualClass")
+plt.ylabel("PredictedClass")
+plt.title("Gaussian Naive Bayes-Actual vs Predicted")
+plt.grid(True)
+plt.show()

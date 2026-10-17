@@ -1,0 +1,18 @@
+Experiment 1: Central Tendency Measures: Mean, Median, Mode, Variance and Standard Deviation
+#Centraltendency
+importpandasaspd
+data=pd.read_csv(
+"https://raw.githubusercontent.com/mwaskom/seaborn-
+data/refs/heads/master/iris.csv")
+columns=[
+'sepal_length',
+'sepal_width',
+'petal_length',
+'petal_width']
+forcolincolumns:
+print("\n",col)
+print("Mean=",data[col].mean())
+print("Median=",data[col].median())
+print("Mode=",data[col].mode()[0])
+print("StandardDeviation=",data[col].std())
+print("Variance=",data[col].var())
