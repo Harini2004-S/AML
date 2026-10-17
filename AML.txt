@@ -1,0 +1,311 @@
+Experiment 1: Central Tendency Measures: Mean, Median, Mode, Variance and Standard Deviation
+#Centraltendency
+importpandasaspd
+data=pd.read_csv(
+"https://raw.githubusercontent.com/mwaskom/seaborn-
+data/refs/heads/master/iris.csv")
+columns=[
+'sepal_length',
+'sepal_width',
+'petal_length',
+'petal_width']
+forcolincolumns:
+print("\n",col)
+print("Mean=",data[col].mean())
+print("Median=",data[col].median())
+print("Mode=",data[col].mode()[0])
+print("StandardDeviation=",data[col].std())
+print("Variance=",data[col].var())
+
+ Experiment 2: Linear Regression and Multiple Linear Regression
+importpandasaspd
+importnumpyasnp
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.linear_modelimportLinearRegression
+fromsklearn.metricsimportr2_score,mean_squared_error
+importmatplotlib.pyplotasplt
+dataset=pd.read_csv("https://raw.githubusercontent.com/selva86/datasets/master/Bosto
+nHousing.csv")
+dataset.info()
+dataset
+X=dataset.drop('medv',axis=1)
+y=dataset['medv']
+x=X[['age']]
+#SingleLinearRegressionProgram
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=10)
+lr=LinearRegression()
+lr.fit(x_train,y_train)
+result=lr.predict(x_test)
+mse=mean_squared_error(y_test,result)
+rmse=np.sqrt(mse)
+r2=r2_score(y_test,result)
+print(f"MeanSquaredError:{mse:.2f}")
+print(f"RootMeanSquaredError:{rmse:.2f}")
+print(f"R-Sqared:{r2:.2f}")
+plt.scatter(y_test,result)
+plt.plot([min(y_test),max(y_test)],[min(y_test),max(y_test)],linestyle='--',color='red')
+plt.xlabel('ActualValues')
+plt.ylabel('PredictedValues')
+plt.title('RegressionLine')
+plt.show()
+#MultiLinearRegressionProgram
+x_train,x_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=10)
+lr=LinearRegression()
+lr.fit(x_train,y_train)
+result1=lr.predict(x_test)
+mse=mean_squared_error(y_test,result1)
+rmse=np.sqrt(mse)
+r2=r2_score(y_test,result1)
+print(f"MeanSquaredError:{mse:.2f}")
+print(f"RootMeanSquaredError:{rmse:.2f}")
+print(f"R-Sqared:{r2:.2f}")
+plt.scatter(y_test,result1)
+plt.plot([min(y_test),max(y_test)],[min(y_test),max(y_test)],linestyle='-',color='red')
+plt.xlabel('ActualValues')
+plt.ylabel('PredictedValues')
+plt.title('RegressionLine')
+plt.show()
+
+ Experiment 3: Logistic Regression using sklearn
+#Logisticregression
+importpandasaspd
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.linear_modelimportLogisticRegression
+fromsklearn.metricsimportaccuracy_score,classification_report
+dataset=pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-
+data/refs/heads/master/iris.csv')
+dataset.info()
+x=dataset.drop('species',axis=1)
+y=dataset['species']
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+lr=LogisticRegression()
+lr.fit(x_train,y_train)
+result2=lr.predict(x_test)
+accuracy=accuracy_score(y_test,result2)
+classification_rep=classification_report(y_test,result2)
+accuracy
+print(classification_rep)
+
+ Experiment 4: Binary Classification Model
+importpandasaspd
+importmatplotlib.pyplotasplt
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.ensembleimportRandomForestClassifier
+fromsklearn.metricsimportaccuracy_score,confusion_matrix
+df=pd.read_csv(r"E:\breastcancer.csv")
+print(df[["id","diagnosis","radius_mean","texture_mean"]].head())
+df["diagnosis"]=df["diagnosis"].map({"M":1,"B":0})
+X=df.drop(["diagnosis","id","Unnamed:32"],axis=1)
+y=df["diagnosis"]
+X_train,X_test,y_train,y_test=train_test_split(
+X,y,test_size=0.2,random_state=42)
+model=RandomForestClassifier(n_estimators=100,random_state=42)
+model.fit(X_train,y_train)
+y_pred=model.predict(X_test)
+print("Accuracy:",accuracy_score(y_test,y_pred))
+cm=confusion_matrix(y_test,y_pred)
+print("ConfusionMatrix:")
+print(cm)
+img=plt.imshow(cm)
+plt.title("RandomForest-BreastCancer")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.colorbar(img)
+plt.show()
+
+ Experiment 5: Nearest Neighbour and Naive Bayes Algorithm
+#KNN
+importpandasaspd
+importmatplotlib.pyplotasplt
+fromsklearn.model_selectionimporttrain_test_split
+fromsklearn.neighborsimportKNeighborsClassifier
+fromsklearn.naive_bayesimportGaussianNB
+fromsklearn.metricsimportaccuracy_score
+fromsklearn.preprocessingimportLabelEncoder
+data=pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-
+data/master/iris.csv")
+X=data.drop('species',axis=1)
+y=data['species']
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,
+random_state=32)
+knn=KNeighborsClassifier()
+knn.fit(X_train,y_train)
+knn_pred=knn.predict(X_test)
+print("KNN Accuracy:",accuracy_score(y_test,knn_pred))
+nb=GaussianNB()
+nb.fit(X_train,y_train)
+nb_pred=nb.predict(X_test)
+print("Gaussian NB Accuracy:",accuracy_score(y_test,nb_pred))
+le=LabelEncoder()
+actual=le.fit_transform(y_test)
+predicted=le.transform(nb_pred)
+plt.figure(figsize=(6,6))
+plt.scatter(actual,predicted,color='blue',s=60)
+plt.plot([0,2],[0,2],'r--',linewidth=2)
+plt.xticks([0,1,2],le.classes_)
+plt.yticks([0,1,2],le.classes_)
+plt.xlabel("ActualClass")
+plt.ylabel("PredictedClass")
+plt.title("Gaussian Naive Bayes-Actual vs Predicted")
+plt.grid(True)
+plt.show()
+
+ Experiment 6: Decision Tree for Classification using sklearn
+Import matplotlib.pyplot as plt
+Import pandas as pd
+From sklearn.model_selection import train_test_split
+From sklearn.tree import DecisionTreeClassifier,plot_tree
+From sklearn.metrics import accuracy_score,classification_report
+dataset=pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-
+data/refs/heads/master/iris.csv')
+x=dataset.drop('species',axis=1)
+y=dataset['species']
+x_train,x_test,y_train,y_test=
+train_test_split(x,y,test_size=0.2,random_state=42)
+dt=DecisionTreeClassifier(criterion='entropy',splitter='random',
+max_depth=3)
+dt.fit(x_train,y_train)
+y_pred=dt.predict(x_test)
+acc=accuracy_score(y_test,y_pred)
+acc
+class_names_list=y.unique().astype(str).tolist()
+feature_names_list=x.columns.tolist()
+plt.figure(figsize=(10,12))
+plot_tree(dt,filled=True,
+feature_names=feature_names_list,class_names=class_names_list,
+rounded=True)
+plt.title("Decision Tree Visualization")
+plt.show()
+
+ Experiment 7: K-means Algorithm
+#k-meansClustering
+Import pandas as pd
+Import matplotlib.pyplot as plt
+From sklearn.cluster import KMeans
+dataset=
+pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-
+data/master/iris.csv")
+x=dataset.drop('species',axis=1).values
+kmeans=KMeans(n_clusters=3,random_state=42)
+kmeans.fit(x)
+cl=kmeans.labels_
+ce=kmeans.cluster_centers_
+plt.figure(figsize=(10,6))
+plt.scatter(x[:,0],x[:,1],c=cl,cmap='viridis',s=50)
+plt.scatter(ce[:,0],ce[:,1],c='red',marker='X',s=250)
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("K-Means Clustering")
+plt.show()
+
+ Experiment 8: Image Classifier using CNN in TensorFlow / Keras
+#CNN
+Import tensorflow as tf
+From tensorflow.keras import layers,models
+From tensorflow.keras.datasets import mnist
+From tensorflow.keras.utils importto_categorical
+(x_train,y_train),(x_test,y_test)=mnist.load_data()
+x_train=x_train.reshape((60000,28,28,1))/255.0
+x_test=x_test.reshape((10000,28,28,1))/255.0
+y_train=to_categorical(y_train)
+y_test=to_categorical(y_test)
+model=models.Sequential()
+model.add(layers.Conv2D(32,(3,3),activation='relu',input_shape=(28,28,
+1)))
+model.add(layers.MaxPooling2D((2,2)))
+model.add(layers.Conv2D(64,(3,3),activation='relu'))
+model.add(layers.MaxPooling2D((2,2)))
+model.add(layers.Conv2D(64,(3,3),activation='relu'))
+model.add(layers.Flatten())
+model.add(layers.Dense(64,activation='relu'))
+model.add(layers.Dense(10,activation='softmax'))
+model.compile(optimizer='adam',loss='categorical_crossentropy',
+metrics=['accuracy'])
+model.fit(x_train,y_train,epochs=5,batch_size=64,validation_split=0.1)
+test_loss,test_acc=model.evaluate(x_test,y_test)
+print("Test accuracy:",test_acc)
+
+
+Import matplotlib.pyplot as plt
+history=model.fit(x_train,y_train,epochs=5,batch_size=64,
+validation_split=0.1)
+test_loss,test_acc=model.evaluate(x_test,y_test)
+print("Test accuracy:",test_acc)
+plt.plot(history.history['accuracy'],label='Training Accuracy')
+plt.plot(history.history['val_accuracy'],label='Validation Accuracy')
+plt.xlabel('Epoch')
+
+
+#Plottrainingandvalidationloss
+plt.plot(history.history['loss'],label='Training Loss')
+plt.plot(history.history['val_loss'],label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+
+ Experiment 9: Autoencoder in TensorFlow / Keras
+Import tensor flow as tf
+From tensorflow.keras import layers,models
+From tensorflow.keras.datasets import mnist
+Import matplotlib.pyplot as plt(x_train,_),(x_test,_)=mnist.load_data()
+x_train=x_train.reshape(60000,784)/255.0
+x_test=x_test.reshape(10000,784)/255.0
+input_img=tf.keras.Input(shape=(784,))
+encoded=layers.Dense(32,activation='relu')(input_img)
+decoded=layers.Dense(784,activation='sigmoid')(encoded)
+autoencoder=models.Model(input_img,decoded)
+autoencoder.compile(optimizer='adam',loss='binary_crossentropy')
+autoencoder.fit(
+x_train,x_train,epochs=10,batch_size=256,shuffle=True,
+validation_data=(x_test,x_test))
+decoded_imgs=autoencoder.predict(x_test)
+n=10
+plt.figure(figsize=(20,4))
+foriinrange(n):
+plt.subplot(2,n,i+1)
+plt.imshow(x_test[i].reshape(28,28),cmap='gray')
+plt.axis('off')
+plt.subplot(2,n,i+1+n)
+plt.imshow(decoded_imgs[i].reshape(28,28),cmap='gray')
+plt.axis('off')
+plt.show()
+
+ Experiment 10: Simple LSTM using TensorFlow / Keras
+Import tensor flow as tf
+From tensorflow.keras import layers,models
+From tensorflow.keras.datasets import imdb
+From tensorflow.keras.preprocessing import sequence
+Import matplotlib.pyplot as plt
+max_features=10000
+maxlen=100
+(x_train,y_train),(x_test,y_test)=
+imdb.load_data(num_words=max_features)
+x_train=sequence.pad_sequences(x_train,maxlen=maxlen)
+x_test=sequence.pad_sequences(x_test,maxlen=maxlen)
+model=models.Sequential([
+layers.Embedding(max_features,128,input_length=maxlen),
+layers.LSTM(128),
+layers.Dense(1,activation='sigmoid')])l
+model.compile(optimizer='adam',
+loss='binary_crossentropy',
+metrics=['accuracy'])
+history=model.fit(x_train,y_train,epochs=5,batch_size=32,validation_split=0.1)
+test_loss,test_acc=model.evaluate(x_test,y_test)
+print("Test accuracy:",test_acc)
+#PlotLoss
+plt.figure(figsize=(8,6))
+plt.plot(history.history['loss'],label='Training Loss')
+plt.plot(history.history['val_loss'],label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+#PlotAccuracy
+plt.figure(figsize=(8,6))
+plt.plot(history.history['accuracy'],label='Training Accuracy')
+plt.plot(history.history['val_accuracy'],label='Validation  Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
