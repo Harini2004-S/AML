@@ -56,3 +56,874 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()
 plt.show()
+
+
+
+
+AML Lab – 10 Programs Definitions, Formulas and Purpose
+Program 1 – Central Tendency and Measure of Dispersion
+1. Definition
+Central Tendency is a statistical method used to identify the central or average value of a dataset.
+
+It includes:
+- Mean
+- Median
+- Mode
+Measure of Dispersion is used to measure how much the data values are spread out from the central value.
+
+It includes:
+- Variance
+- Standard Deviation
+2. Formulas
+Mean
+\[
+Mean = \frac{\sum X}{N}
+\]
+
+Where:
+- \(X\) = Data values
+- \(N\) = Total number of values
+Median
+
+For odd number of values:
+\[
+Median = \left(\frac{N+1}{2}\right)^{th}\ value
+\]
+
+For even number of values:
+\[
+Median = \frac{\text{Two middle values sum}}{2}
+\]
+
+Mode: Most frequently repeated value.
+
+Variance (sample variance)
+\[
+s^2 = \frac{\sum(X-\bar X)^2}{N-1}
+\]
+
+Standard Deviation
+\[
+s = \sqrt{s^2}
+\]
+
+3. Purpose of using
+- Mean – To find average value.
+- Median – To find middle value.
+- Mode – To identify frequently occurring value.
+- Variance – To measure data spread.
+- Standard Deviation – To understand how far values deviate from the mean.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+pandas	Data analysis
+read_csv()	Read CSV dataset
+mean()	Calculate average
+median()	Calculate middle value
+mode()	Find frequently occurring value
+std()	Calculate standard deviation
+var()	Calculate variance
+for loop	Process all selected columns
+
+5. Output
+The program displays Mean, Median, Mode, Standard Deviation and Variance for the four Iris dataset features.
+
+Remember: This is a statistical analysis program, not a Machine Learning prediction algorithm.
+
+Program 2 – Linear Regression and Multiple Linear Regression
+1. Definition
+Linear Regression is a supervised Machine Learning algorithm used to predict continuous numerical values by identifying the relationship between input and output variables.
+
+Multiple Linear Regression is used to predict a continuous output using two or more independent input variables.
+2. Formulas
+Simple Linear Regression
+\[
+Y = mX + C
+\]
+
+Where:
+- \(Y\) = Predicted output
+- \(X\) = Input variable
+- \(m\) = Slope
+- \(C\) = Intercept
+Multiple Linear Regression
+\[
+Y = b_0+b_1X_1+b_2X_2+\cdots+b_nX_n
+\]
+
+Where:
+- \(Y\) = Predicted output
+- \(X_1,X_2\) = Input variables
+- \(b_0\) = Intercept
+- \(b_1,b_2\) = Coefficients
+Mean Squared Error (MSE)
+\[
+MSE = \frac{1}{N}\sum(Y_i-\hat Y_i)^2
+\]
+
+Root Mean Squared Error (RMSE)
+\[
+RMSE = \sqrt{MSE}
+\]
+
+R-Squared
+\[
+R^2 = 1-\frac{SS_{res}}{SS_{tot}}
+\]
+
+3. Purpose of using
+- To predict house prices.
+- To predict salary based on experience.
+- To predict sales based on advertising.
+- To understand the relationship between variables.
+- To compare actual and predicted values.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+pandas	Dataset handling
+numpy	Mathematical calculations
+train_test_split()	Divide training and testing data
+LinearRegression()	Create regression model
+fit()	Train the model
+predict()	Predict numerical output
+mean_squared_error()	Calculate MSE
+np.sqrt()	Calculate square root
+r2_score()	Calculate R² score
+plt.scatter()	Draw scatter plot
+plt.plot()	Draw a line graph
+
+5. Output
+The program displays MSE, RMSE and R-Squared values. It also displays a graph comparing actual and predicted values.
+
+Remember:
+- Simple Linear Regression = One input variable.
+- Multiple Linear Regression = Two or more input variables.
+
+Program 3 – Logistic Regression
+1. Definition
+Logistic Regression is a supervised Machine Learning classification algorithm used to predict the probability of a categorical outcome.
+
+It is commonly used for binary classification and can also handle multiple classes.
+
+In this lab, it is used to classify Iris flowers into different species.
+2. Formula
+Sigmoid Function
+\[
+P = \frac{1}{1+e^{-z}}
+\]
+
+Where:
+\[
+z = b_0+b_1X_1+\cdots+b_nX_n
+\]
+
+- \(P\) = Predicted probability.
+- \(e\) = Mathematical constant.
+- \(z\) = Linear combination of input features.
+Sigmoid converts the output into a value between 0 and 1.
+
+For multiple classes, Logistic Regression can use the Softmax function:
+\[
+P_i = \frac{e^{z_i}}{\sum_j e^{z_j}}
+\]
+
+3. Purpose of using
+- To classify data into categories.
+- To predict Pass or Fail.
+- To identify Spam or Not Spam.
+- To classify flower species.
+- To estimate class probabilities.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+pandas	Load and manage dataset
+train_test_split()	Split dataset
+LogisticRegression()	Create classification model
+fit()	Train the model
+predict()	Predict class labels
+accuracy_score()	Calculate accuracy
+classification_report()	Display precision, recall, F1-score and support
+
+5. Output
+The program predicts Iris flower species and displays the classification report.
+
+Remember: Logistic Regression is used for classification, even though its name contains the word Regression.
+
+Program 4 – Binary Classification Model
+1. Definition
+Binary Classification is a supervised Machine Learning technique used to classify data into exactly two different categories or classes.
+
+Binary means two.
+2. Formula
+A common formula used for binary classification is the Sigmoid function:
+\[
+P = \frac{1}{1+e^{-z}}
+\]
+
+A common decision rule is:
+\[
+Class =
+\begin{cases}
+1, & P \geq 0.5\\
+0, & P < 0.5
+\end{cases}
+\]
+
+The threshold 0.5 is a common example; the actual threshold can be changed depending on the application.
+3. Purpose of using
+- To predict Pass or Fail.
+- To identify Spam or Not Spam.
+- To predict Disease or No Disease.
+- To identify Approved or Rejected applications.
+- To classify data into two possible outcomes.
+4. Important Python functions – Purpose
+The exact functions depend on the classifier used. A general binary classification workflow may use:
+Python function	Purpose
+train_test_split()	Split training and testing data
+fit()	Train classification model
+predict()	Predict two possible classes
+accuracy_score()	Calculate accuracy
+confusion_matrix()	Compare actual and predicted classes
+classification_report()	Display classification performance
+
+5. Output
+The model predicts one of two classes, such as 0 or 1.
+
+PDF note: Your lab contents page lists Binary Classification as Program 4, but a separate source-code program is not visible in the PDF. So the above is the general concept and formula, not a claim about a particular code implementation.
+
+Program 5 – K-Nearest Neighbour and Naive Bayes
+1. Definition
+K-Nearest Neighbour (KNN) is a supervised Machine Learning algorithm that classifies new data based on the majority class of its nearest neighbours.
+
+Naive Bayes is a supervised probability-based classification algorithm based on Bayes' theorem. It assumes that features are conditionally independent given the class.
+2. Formulas
+KNN – Euclidean Distance
+\[
+d = \sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
+\]
+
+Where:
+- \(x_i,y_i\) = Feature values.
+- \(d\) = Distance between two data points.
+KNN identifies the nearest K points and predicts the majority class.
+
+Naive Bayes – Bayes Theorem
+\[
+P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+\]
+
+Where:
+- \(P(A|B)\) = Posterior probability.
+- \(P(B|A)\) = Likelihood.
+- \(P(A)\) = Prior probability.
+- \(P(B)\) = Evidence.
+3. Purpose of using
+KNN:
+- To classify data based on similarity.
+- To identify nearby data points.
+- To predict flower species.
+Naive Bayes:
+- To classify data using probability.
+- To perform spam detection.
+- To perform text classification.
+- To predict flower species.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+KNeighborsClassifier()	Create KNN model
+GaussianNB()	Create Gaussian Naive Bayes model
+fit()	Train both models
+predict()	Predict classes
+accuracy_score()	Calculate accuracy
+LabelEncoder()	Convert text labels into numbers
+fit_transform()	Learn labels and convert them into numbers
+transform()	Convert labels using an already learned encoding
+matplotlib	Display graphs
+
+5. Output
+The program displays:
+- KNN accuracy.
+- Gaussian Naive Bayes accuracy.
+- A comparison of actual and predicted classes through the graph code.
+Remember:
+- KNN = Distance-based.
+- Naive Bayes = Probability-based.
+
+Program 6 – Decision Tree Classification
+1. Definition
+Decision Tree is a supervised Machine Learning algorithm used for classification and regression. It makes decisions using a tree-like structure containing conditions and branches.
+2. Formula
+One important formula used in Decision Tree is Entropy.
+\[
+Entropy(S)=-\sum_{i=1}^{n}p_i\log_2(p_i)
+\]
+
+Where:
+- \(S\) = Dataset.
+- \(p_i\) = Probability of each class.
+Information Gain
+\[
+IG = Entropy(parent)-
+\sum_j\frac{|S_j|}{|S|}Entropy(S_j)
+\]
+
+Information Gain helps select a suitable feature for splitting the data.
+3. Purpose of using
+- To classify data into different categories.
+- To make decisions based on conditions.
+- To identify important features.
+- To understand the decision-making process visually.
+- To predict flower species.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+DecisionTreeClassifier()	Create decision tree classifier
+criterion='entropy'	Use entropy to evaluate splits
+splitter='random'	Select splits using random strategy
+max_depth=3	Limit tree depth to 3
+fit()	Train the model
+predict()	Predict output classes
+accuracy_score()	Calculate accuracy
+plot_tree()	Visualize the decision tree
+plt.show()	Display the tree graph
+
+5. Output
+The program displays:
+- Model accuracy.
+- Decision Tree diagram.
+- Root node, decision nodes and leaf nodes.
+Remember: Decision Tree works like a flowchart, where every condition leads to another decision or final output.
+
+Program 7 – K-Means Clustering
+1. Definition
+K-Means Clustering is an unsupervised Machine Learning algorithm used to divide a dataset into K groups or clusters based on similarity.
+
+Each cluster has a centre point called a centroid.
+2. Formula
+Euclidean Distance
+\[
+d(x,\mu)=\sqrt{\sum_{i=1}^{n}(x_i-\mu_i)^2}
+\]
+
+Where:
+- \(x\) = Data point.
+- \(\mu\) = Cluster centroid.
+Centroid Calculation
+\[
+\mu_k = \frac{1}{N_k}\sum_{i=1}^{N_k}x_i
+\]
+
+K-Means Objective Function
+\[
+J = \sum_{k=1}^{K}\sum_{x_i\in C_k}
+\|x_i-\mu_k\|^2
+\]
+
+The algorithm tries to minimize the distance between data points and their cluster centres.
+3. Purpose of using
+- To group similar data points.
+- To identify customer segments.
+- To group similar products.
+- To identify patterns in data.
+- To perform data clustering without predefined labels.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+KMeans()	Create clustering model
+n_clusters=3	Create three clusters
+fit()	Identify clusters
+labels_	Return cluster assignment for each point
+cluster_centers_	Return centroid positions
+plt.scatter()	Display cluster points
+plt.show()	Display clustering graph
+
+5. Output
+The program displays three clusters using different colours. Red X marks indicate the cluster centres.
+
+Remember: K-Means = Grouping similar data without predefined class labels.
+
+Program 8 – Image Classifier Using CNN
+1. Definition
+Convolutional Neural Network (CNN) is a Deep Learning algorithm mainly used to process, analyse and classify image data.
+
+CNN automatically learns image features such as edges, shapes and patterns using convolutional layers.
+2. Important formulas
+Convolution Operation
+\[
+Output(i,j)=\sum_m\sum_n Input(i+m,j+n)\times Filter(m,n)
+\]
+
+This operation applies a filter to an image to extract features.
+
+ReLU Activation
+\[
+f(x)=\max(0,x)
+\]
+
+ReLU converts negative values into zero and retains positive values.
+
+Softmax Function
+\[
+P_i=\frac{e^{z_i}}{\sum_j e^{z_j}}
+\]
+
+Softmax calculates the probability for each output class.
+3. Purpose of using
+- To classify images.
+- To identify handwritten digits.
+- To recognise objects.
+- To extract important image features.
+- To perform image recognition tasks.
+In your lab, CNN is used to identify handwritten digits from 0 to 9 using the MNIST dataset.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+tensorflow	Deep Learning framework
+keras	Build and train neural networks
+mnist.load_data()	Load handwritten digit dataset
+reshape()	Change image dimensions
+to_categorical()	Convert labels into one-hot encoding
+Sequential()	Create a sequential model
+Conv2D()	Extract image features
+MaxPooling2D()	Reduce feature map dimensions
+Flatten()	Convert feature maps into one-dimensional data
+Dense()	Create fully connected neural network layers
+compile()	Configure the model for training
+fit()	Train the model
+evaluate()	Test model performance
+
+5. Output
+The program displays the test accuracy of the CNN model.
+
+The model predicts one of ten classes: 0, 1, 2, 3, 4, 5, 6, 7, 8 or 9.
+
+Remember: CNN = Image classification.
+
+Program 9 – Autoencoder
+1. Definition
+Autoencoder is an unsupervised Deep Learning neural network used to learn compressed representations of input data and reconstruct the original input.
+
+It consists of two main components:
+1. Encoder – Compresses input data.
+2. Decoder – Reconstructs the input data.
+2. Formula
+Encoder
+\[
+Z=f(WX+b)
+\]
+
+Decoder
+\[
+\hat X=g(W'Z+b')
+\]
+
+Where:
+- \(X\) = Original input.
+- \(Z\) = Compressed representation.
+- \(\hat X\) = Reconstructed output.
+- \(W,W'\) = Weights.
+- \(b,b'\) = Biases.
+Reconstruction Loss
+
+A common Binary Crossentropy formula is:
+\[
+L=-\frac{1}{N}\sum_{i=1}^{N}
+[x_i\log(\hat x_i)+(1-x_i)\log(1-\hat x_i)]
+\]
+
+This measures the difference between the original input and reconstructed output.
+3. Purpose of using
+- To compress data.
+- To reconstruct images.
+- To remove noise from images.
+- To learn important data features.
+- To reduce dimensionality.
+- To identify unusual patterns in some applications.
+In your lab, Autoencoder is used to reconstruct MNIST handwritten digit images.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+tensorflow	Deep Learning framework
+Input()	Define input layer
+Dense()	Create encoder and decoder layers
+Model()	Connect input and output layers
+compile()	Configure model
+fit()	Train the Autoencoder
+predict()	Reconstruct images
+reshape()	Change image dimensions
+imshow()	Display images
+subplot()	Arrange images in rows and columns
+
+5. Output
+The output displays two rows:
+- First row – Original images.
+- Second row – Reconstructed images.
+Remember: Autoencoder = Compress and reconstruct data.
+
+Program 10 – Simple LSTM
+1. Definition
+Long Short-Term Memory (LSTM) is a type of Recurrent Neural Network (RNN) used to process sequential data and learn long-term dependencies.
+
+It uses special gates to control which information should be remembered, updated or forgotten.
+2. Important formulas
+LSTM has three main gates.
+
+Forget Gate
+\[
+f_t=\sigma(W_f[h_{t-1},x_t]+b_f)
+\]
+
+Decides which previous information should be forgotten.
+
+Input Gate
+\[
+i_t=\sigma(W_i[h_{t-1},x_t]+b_i)
+\]
+
+Decides which new information should be stored.
+
+Output Gate
+\[
+o_t=\sigma(W_o[h_{t-1},x_t]+b_o)
+\]
+
+Decides which information should be given as output.
+
+Cell State Update
+\[
+C_t=f_t*C_{t-1}+i_t*\tilde C_t
+\]
+
+The cell state stores important information.
+
+Sigmoid Function
+\[
+\sigma(x)=\frac{1}{1+e^{-x}}
+\]
+
+3. Purpose of using
+- To process text data.
+- To perform sentiment analysis.
+- To analyse sequential information.
+- To predict time-series values.
+- To learn relationships between previous and current inputs.
+In your lab, LSTM is used to classify IMDB movie reviews as positive or negative.
+4. Python libraries and functions – Purpose
+Python function	Purpose
+tensorflow	Deep Learning framework
+imdb.load_data()	Load movie review dataset
+pad_sequences()	Make review sequences equal length
+Embedding()	Convert word indices into vector representations
+LSTM()	Learn sequential information
+Dense()	Create output layer
+compile()	Configure the model
+fit()	Train the model
+evaluate()	Test model performance
+predict()	Predict sentiment class
+
+5. Output
+The program displays the test accuracy of the LSTM model.
+
+The classification output is:
+- 0 – Negative review.
+- 1 – Positive review.
+Remember: LSTM = Sequential data and text classification.
+
+Final Important Comparison
+Program	Definition in one line	Main formula / concept	Purpose
+1. Central Tendency	Finds central values and data spread	Mean, Median, Mode, Variance, SD	Statistical analysis
+2. Linear Regression	Predicts continuous numerical values	\(Y=mX+C\)	Numerical prediction
+3. Logistic Regression	Predicts categorical classes	Sigmoid	Classification
+4. Binary Classification	Classifies into two classes	Sigmoid and threshold	Two-class prediction
+5. KNN & Naive Bayes	Classifies using distance and probability	Euclidean distance, Bayes theorem	Classification
+6. Decision Tree	Makes decisions using tree structure	Entropy, Information Gain	Classification
+7. K-Means	Groups similar data points	Centroid, Euclidean distance	Clustering
+8. CNN	Learns image features	Convolution, ReLU, Softmax	Image classification
+9. Autoencoder	Compresses and reconstructs data	Encoder, Decoder, Loss	Image reconstruction
+10. LSTM	Learns sequential information	Forget, Input, Output gates	Sentiment classification
+
+One-minute revision: What is the purpose of each?
+1. Central Tendency – Average and data spread find panna.
+2. Linear Regression – Numerical values predict panna.
+3. Logistic Regression – Categories predict panna.
+4. Binary Classification – Two categories-la classify panna.
+5. KNN and Naive Bayes – Distance and probability use panni classify panna.
+6. Decision Tree – Conditions base panni decision edukka.
+7. K-Means – Similar data-ai groups-ah divide panna.
+8. CNN – Images identify and classify panna.
+9. Autoencoder – Data compress and reconstruct panna.
+10. LSTM – Text and sequence information analyse panna.
+
+
+
+
+
+
+
+Program 1 – Central Tendency and Measure of Dispersion
+Definition:
+
+Central Tendency is a statistical method used to find the central or average value of a dataset. It includes Mean, Median and Mode.
+
+Measure of Dispersion is used to measure how data values are spread out. It includes Variance and Standard Deviation.
+
+Purpose of using:
+- Mean – To find the average value.
+- Median – To find the middle value.
+- Mode – To find the frequently repeated value.
+- Variance – To measure data spread.
+- Standard Deviation – To understand the variation in data.
+Python functions and purpose:
+Function	Purpose
+Pandas	Data analysis
+read_csv()	Load dataset
+mean()	Find average
+median()	Find middle value
+mode()	Find repeated value
+std()	Find standard deviation
+var()	Find variance
+
+Output: Displays Mean, Median, Mode, Variance and Standard Deviation for Iris dataset features.
+
+Program 2 – Linear Regression and Multiple Linear Regression
+Definition:
+
+Linear Regression is a supervised Machine Learning algorithm used to predict continuous numerical values based on the relationship between input and output variables.
+
+Multiple Linear Regression predicts numerical values using two or more input variables.
+
+Purpose of using:
+- To predict house prices.
+- To predict salary.
+- To predict sales.
+- To analyse relationships between variables.
+- To compare actual and predicted values.
+Python functions and purpose:
+Function	Purpose
+Pandas	Dataset handling
+NumPy	Mathematical operations
+read_csv()	Load dataset
+train_test_split()	Split dataset
+LinearRegression()	Create regression model
+fit()	Train model
+predict()	Predict output
+mean_squared_error()	Calculate prediction error
+r2_score()	Evaluate model performance
+plt.scatter()	Display scatter graph
+
+Output: Displays MSE, RMSE, R-Squared values and a graph comparing actual and predicted values.
+
+Program 3 – Logistic Regression
+Definition:
+
+Logistic Regression is a supervised Machine Learning classification algorithm used to predict categorical outcomes.
+
+It is used to classify data into different categories.
+
+Purpose of using:
+- To classify data.
+- To predict Pass or Fail.
+- To identify Spam or Not Spam.
+- To classify Iris flower species.
+- To calculate classification accuracy.
+Python functions and purpose:
+Function	Purpose
+Pandas	Dataset handling
+train_test_split()	Split dataset
+LogisticRegression()	Create classification model
+fit()	Train model
+predict()	Predict class
+accuracy_score()	Calculate accuracy
+classification_report()	Display precision, recall, F1-score and support
+
+Output: Displays predicted Iris flower species and classification performance report.
+
+Program 4 – Binary Classification Model
+Definition:
+
+Binary Classification is a supervised Machine Learning technique used to classify data into exactly two different categories or classes.
+
+Purpose of using:
+- To predict Pass or Fail.
+- To identify Spam or Not Spam.
+- To predict Disease or No Disease.
+- To classify Approved or Rejected applications.
+Python functions and purpose:
+Function	Purpose
+train_test_split()	Split dataset
+fit()	Train model
+predict()	Predict class
+accuracy_score()	Calculate accuracy
+confusion_matrix()	Compare actual and predicted results
+classification_report()	Evaluate classification performance
+
+Output: Predicts one of two possible classes.
+
+Note: Your PDF contains the Program 4 title but does not show a separate source-code implementation.
+
+Program 5 – K-Nearest Neighbour and Naive Bayes
+Definition:
+
+K-Nearest Neighbour (KNN) is a supervised Machine Learning algorithm that classifies new data based on the nearest neighbouring data points.
+
+Naive Bayes is a supervised probability-based classification algorithm that uses Bayes' theorem to predict the class of data.
+
+Purpose of using:
+
+KNN:
+- To classify data based on similarity.
+- To identify nearest data points.
+- To predict flower species.
+Naive Bayes:
+- To classify data using probability.
+- To perform spam detection.
+- To perform text classification.
+Python functions and purpose:
+Function	Purpose
+KNeighborsClassifier()	Create KNN model
+GaussianNB()	Create Naive Bayes model
+fit()	Train model
+predict()	Predict classes
+accuracy_score()	Calculate accuracy
+LabelEncoder()	Convert text labels into numerical values
+fit_transform()	Learn and convert labels
+transform()	Convert labels using existing encoding
+
+Output: Displays KNN accuracy and Gaussian Naive Bayes accuracy.
+
+Program 6 – Decision Tree Classification
+Definition:
+
+Decision Tree is a supervised Machine Learning algorithm used for classification and regression. It makes decisions using a tree-like structure containing nodes and branches.
+
+Purpose of using:
+- To classify data.
+- To make decisions based on conditions.
+- To identify important features.
+- To predict Iris flower species.
+- To visualize decision-making steps.
+Python functions and purpose:
+Function	Purpose
+DecisionTreeClassifier()	Create decision tree model
+criterion='entropy'	Measure data impurity
+splitter='random'	Select split using random strategy
+max_depth=3	Limit tree depth
+fit()	Train model
+predict()	Predict class
+accuracy_score()	Calculate accuracy
+plot_tree()	Visualize decision tree
+plt.show()	Display graph
+
+Output: Displays classification accuracy and Decision Tree visualization.
+
+Program 7 – K-Means Clustering
+Definition:
+
+K-Means is an unsupervised Machine Learning algorithm used to divide a dataset into a specified number of groups called clusters based on similarity.
+
+Purpose of using:
+- To group similar data.
+- To identify customer segments.
+- To find patterns in datasets.
+- To group similar products.
+- To perform clustering without predefined labels.
+Python functions and purpose:
+Function	Purpose
+KMeans()	Create clustering model
+n_clusters=3	Create three clusters
+fit()	Identify clusters
+labels_	Get cluster assignments
+cluster_centers_	Get cluster centre points
+plt.scatter()	Display clusters
+plt.show()	Display graph
+
+Output: Displays three clusters using different colours and red X marks for cluster centres.
+
+Program 8 – Image Classifier Using CNN
+Definition:
+
+Convolutional Neural Network (CNN) is a Deep Learning algorithm mainly used for image processing and image classification. It automatically identifies important features from images.
+
+Purpose of using:
+- To classify images.
+- To identify handwritten digits.
+- To recognise objects.
+- To extract image features.
+- To perform image recognition.
+Python functions and purpose:
+Function	Purpose
+TensorFlow	Deep Learning framework
+Keras	Build neural networks
+mnist.load_data()	Load handwritten digit dataset
+reshape()	Change image dimensions
+to_categorical()	Convert labels into categorical format
+Sequential()	Create model
+Conv2D()	Extract image features
+MaxPooling2D()	Reduce image feature dimensions
+Flatten()	Convert features into one-dimensional data
+Dense()	Create fully connected layers
+compile()	Configure model
+fit()	Train model
+evaluate()	Test model performance
+
+Output: Displays CNN model test accuracy for handwritten digit classification from 0 to 9.
+
+Program 9 – Autoencoder
+Definition:
+
+Autoencoder is an unsupervised Deep Learning neural network used to compress input data and reconstruct the original data.
+
+It consists of two main parts:
+- Encoder – Compresses input data.
+- Decoder – Reconstructs the original data.
+Purpose of using:
+- To compress data.
+- To reconstruct images.
+- To remove noise from images.
+- To reduce dimensionality.
+- To learn important data features.
+Python functions and purpose:
+Function	Purpose
+TensorFlow	Deep Learning framework
+Input()	Create input layer
+Dense()	Create encoder and decoder layers
+Model()	Create Autoencoder model
+compile()	Configure model
+fit()	Train model
+predict()	Reconstruct images
+reshape()	Change image dimensions
+imshow()	Display images
+subplot()	Arrange images in rows and columns
+
+Output: Displays original handwritten digit images and reconstructed images for comparison.
+
+Program 10 – Simple LSTM
+Definition:
+
+Long Short-Term Memory (LSTM) is a type of Recurrent Neural Network (RNN) used to process sequential data and remember important information for a longer period.
+
+Purpose of using:
+- To process text data.
+- To perform sentiment analysis.
+- To analyse sequential information.
+- To predict time-series data.
+- To understand relationships between words in a sentence.
+Python functions and purpose:
+Function	Purpose
+TensorFlow	Deep Learning framework
+imdb.load_data()	Load movie review dataset
+pad_sequences()	Make input sequences equal length
+Embedding()	Convert words into numerical vector representations
+LSTM()	Learn sequential information
+Dense()	Create output layer
+compile()	Configure model
+fit()	Train model
+evaluate()	Test model performance
+predict()	Predict sentiment
+
+Output: Displays test accuracy for movie review sentiment classification into Positive and Negative classes.
+
+Quick revision – 10 programs
+No.	Program	Main purpose
+1	Central Tendency	Statistical analysis
+2	Linear Regression	Numerical prediction
+3	Logistic Regression	Classification
+4	Binary Classification	Two-class prediction
+5	KNN & Naive Bayes	Classification
+6	Decision Tree	Decision-based classification
+7	K-Means	Data grouping
+8	CNN	Image classification
+9	Autoencoder	Data reconstruction
+10	LSTM	Sequential data analysis
